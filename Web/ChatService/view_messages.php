@@ -1,7 +1,7 @@
 <?php
 
 include 'util.php';
-include 'chat_service_db.php';
+include 'chat_service_db_pdo.php';
 header('Content-Type: application/json');
 
 //$entityBody = file_get_contents('php://input');

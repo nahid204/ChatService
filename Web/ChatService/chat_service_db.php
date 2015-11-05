@@ -1,23 +1,12 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of chat_service_db
- *
- * @author rajin
- */
 class ChatServiceDB {
     //put your code here
-    private $host ="localhost";
+    private $host ="127.10.48.2";
     private $port = 3306;
-    private $db ="chat_service";
-    private $user = "root";
-    private $password = "rajin";
+    private $db ="chat";
+    private $user = "adminJEdbDTW";
+    private $password = "RcuaWQFWKnMF";
     
     private $mysqli;
     function __construct() {
@@ -30,14 +19,23 @@ class ChatServiceDB {
    
    public function getUserInfo($id)
    {
+		echo "hi from get user info";
        $stmt = $this->mysqli
-               ->prepare(" SELECT user_id, email, first_name, last_name FROM user WHERE user_id=(?)");
+               ->prepare(" SELECT user_id, email, first_name, last_name FROM user WHERE user_id=(?);");
+		echo "prepare";
        $stmt->bind_param('i', $id);
+	   echo "bind param";
        $stmt->execute();
+	   echo "execute";
        
        $result = $stmt->get_result();
+	   echo "get result";
+       
        $row = $result->fetch_assoc();
+	    echo "fetch assoc";
+		print_r($row);
        $stmt->close();
+	   echo "close";
        return $row;
    }
    
